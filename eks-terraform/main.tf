@@ -4,7 +4,7 @@ provider "aws" {
 
  #Creating IAM role for EKS
   resource "aws_iam_role" "master" {
-    name = "veera-eks-master1"
+    name = "veera-eks-master3"
 
     assume_role_policy = jsonencode({
       "Version": "2012-10-17",
@@ -36,7 +36,7 @@ provider "aws" {
   }
 
   resource "aws_iam_role" "worker" {
-    name = "veera-eks-worker1"
+    name = "veera-eks-worker3"
 
     assume_role_policy = jsonencode({
       "Version": "2012-10-17",
@@ -53,7 +53,7 @@ provider "aws" {
   }
 
   resource "aws_iam_policy" "autoscaler" {
-    name = "veera-eks-autoscaler-policy1"
+    name = "veera-eks-autoscaler-policy3"
     policy = jsonencode({
       "Version": "2012-10-17",
       "Statement": [
@@ -166,10 +166,10 @@ data "aws_security_group" "selected" {
     subnet_ids      = [data.aws_subnet.subnet-1.id, data.aws_subnet.subnet-2.id]
     capacity_type   = "ON_DEMAND"
     disk_size       = 20
-    instance_types  = ["t2.small"]
+    instance_types  = ["t3.large"]
 
     remote_access {
-      ec2_ssh_key               = "vsv"
+      ec2_ssh_key               = "keyy"
       source_security_group_ids = [data.aws_security_group.selected.id]
     }
 
